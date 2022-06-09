@@ -16,3 +16,26 @@ cache:
     - '$HOME/.gradle'
 
 script: "./gradlew clean build"
+
+before_deploy:
+  - zip -r springboot-web-book *
+  - mkdir -p deploy
+  - mv springboot-web-book.zip deploy/springboot-web-book.zip # deploy로 zip파일 이동
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY  # Travis repo settings에서 설정된 값
+    secret_access_key: $AWS_SECRET_KEY  # Travis repo settings에서 설정된 값
+    bucket: nj-webserver-build # s3 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private # zip 파일 접근은 private로
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
+    wait_until_deployed: true
+
+
+# CI 실행 완료시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - izima88@naver.com
