@@ -18,9 +18,9 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r springboot-web-book *
+  - zip -r nj-webservice *
   - mkdir -p deploy
-  - mv springboot-web-book.zip deploy/springboot-web-book.zip # deploy로 zip파일 이동
+  - mv nj-webservice.zip deploy/nj-webservice.zip # deploy로 zip파일 이동
 
 deploy:
   - provider: s3
