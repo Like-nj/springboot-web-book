@@ -20,13 +20,12 @@ script: "./gradlew clean build"
 before_deploy:
   - zip -r nj-webservice *
   - mkdir -p deploy
-  - ls -al
   - mv nj-webservice.zip deploy/nj-webservice.zip # deploy로 zip파일 이동
 
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY  # Travis repo settings에서 설정된 값
-    secret_access_key: $AWS_SECRET_KEY  # Travis repo settings에서 설정된 값
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
     bucket: nj-webserver-build # s3 버킷
     region: ap-northeast-2
     skip_cleanup: true
