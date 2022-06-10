@@ -33,6 +33,16 @@ deploy:
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait_until_deployed: true
 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: nj-webserver-build # s3 버킷
+    key: nj-webservice.zip
+    bundle_type: zip
+    application: nj-webserver-cd
+    deployment_group: nj-webserver-cd-group
+    region: ap-northeast-2
+    wait_until_deployed: true
 
 # CI 실행 완료시 메일로 알람
 notifications:
