@@ -18,9 +18,13 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r nj-webservice *
-  - mkdir -p deploy
-  - mv nj-webservice.zip deploy/nj-webservice.zip # deploy로 zip파일 이동
+  - mkdir -p before-deplooy
+  - cp scripts/*.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cp build/libs/*.jar before-deploy/
+  - cp before-deploy && zip -r before-deploy *
+  - cp ../ && mkdir -p deploy
+  - mv before-deploy/before-deploy.zip deploy/nj-webservice.zip   # deploy로 zip파일 이동
 
 deploy:
   - provider: s3
