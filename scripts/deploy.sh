@@ -5,7 +5,7 @@ PROJECT_NAME=nj-webservice  #미사용
 
 echo "> Build 파일복사"
 
-cd $REPOSITORY/zip/*.jar $REPOSITORY/
+cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 애플리케이션pid 확인"
 
@@ -37,4 +37,5 @@ nohup java -jar \
   -Dspring.config.location=classpath:/application.properties,classpath:/application-real.properties,/home/ec2-usr/app/application-oauth.properties,/home/ec2-user/app/application-real-db.properties \
   -Dspring.profiles.active=real \
   $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+
 
