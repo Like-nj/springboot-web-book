@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REPOSITORY=/home/ec2-user/app/step2
-PROJECT_NAME=nj-webservice
+PROJECT_NAME=nj-webservice  #미사용
 
 echo "> Build 파일복사"
 
@@ -9,7 +9,7 @@ cd $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 애플리케이션pid 확인"
 
-CURRENT_PID=$(pgrep -fl nj-webservice | grep jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fl springboot | grep java | awk '{print $1}')
 
 echo "현재 구동 중인 애플리케이션 pid: $CURRENT_PID"
 
