@@ -2,6 +2,7 @@ package com.book.hello.web.dto;
 
 
 import com.book.hello.domain.posts.Posts;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
